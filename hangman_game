@@ -1,0 +1,119 @@
+                                                                                                    
+# create the hangman game             
+                               .........................................                            
+                              .:+##################################+:..                             
+                               -%@*++++++++++++++++++++++++++++++*@%-..                             
+                               -%@=..                           .-@%-                               
+                               -%@=.                            .-@%-                               
+                               -%@=.                            .-@%-                               
+                               -%@=.                           ..-@%-.. ..                          
+                               -%@=.                        ..:*#%@@%#=....                         
+                               -%@=.                      ...*@@#=--+%@%=..                         
+                               -%@=.                      ..#@#:......-%@+.                         
+                               -%@=.                      .=@@...     .+@%..                        
+                               -%@=.                       =@@:.    ...+@%..                        
+                               -%@=.                      ..#@%:.  ...=@@=..                        
+                               -%@=.                      ...+@@%%**%@@%-.. .                       
+                               -%@=.                      .....-*@@@%+:....                         
+                               -%@=.                            .-@%-...                            
+                               -%@=.                          ..:%@@*:....                          
+                               -%@=.                          .%@@@@@@+....                         
+                               -%@=.                      ...#@@*=@%+#@@=....                       
+                               -%@=.                     ..*@@#..-@%-.=%@@-..                       
+                               -%@=.                   ..+@@#:...-@%-  .=@@@:...                    
+                               -%@=.                   :#@%:.. ..-@%-  ...=@@*..                    
+                               -%@=.                  ........  .-@%-    .......                    
+                               -%@=.                   ......   .-@%-       ...                     
+                               -%@=.                            .-@%-                               
+                               -%@=.                           ..-@%-..                             
+                               -%@=.                          ..=@@@%-...                           
+                               -%@=.                          .#@%=+@@=...                          
+                               -%@=.                      ....@@%:..-%@+...                         
+                               -%@=.                   .. ..-@@#.....-%@#.. .                       
+                               -%@=.                    ...+@@=..  ....#@%:..                       
+                               -%@=.                   ...*@@-.    .....+@@=....                    
+                               -%@=.                   .:#@#:.        ...=@@*...                    
+                               -%@=.                  .:#@*:..           .:@@*..                    
+                               -%@=.                   ......             ......                    
+                               -%@=.                                                                
+                               -%@=.                                                                
+                               -%@=.                                                                
+                               -%@=.                                                                
+                     ...      .-%@=..                                                               
+                     ..........-%@=.............................................                    
+                   ..-*********#@@#*******************************************-..                   
+                  ...=########################################################=.                    
+
+import random
+
+
+def hint(ran_w,guessed_letters):
+    for h in ran_w:
+        if h in guessed_letters:
+            print(h,end=" ")
+        else:
+            print("_", end= " ")
+    print()  
+   
+def wrong_guess():
+    wrong_guesses =("opps you have gueesed wrong", "opps try again", "ahhh you failed this chance ", "you can do better this boy", "think hard for once boy")
+    return random.choice(wrong_guesses)
+        
+def right_guess():
+    right_guesses =("yess smart ass!", "mmm is this einstein?", "you can do it!", "i believe in you!", "ouu smart guess!", "boy o boy!", "he's good!", "great!", "them dey call am superstar!", "wow are you a magician?")
+    return random.choice(right_guesses)
+        
+
+def main():
+    lives=6
+    guessed_letters =[]
+     
+    
+    print(" Welcome to the hangman game")
+    print("Guess the country I'm in to save my life")
+    
+
+    words = ("zebra","frog","tiger","owl","bat","donkey","racoon","warthog","eel","maned-wolf", "addax", "tapir","jerboa")
+    ran_w= random.choice(words)
+    
+
+    while True:
+        hint(ran_w, guessed_letters)
+        user_guess = str(input("Enter your letter>>")).lower()
+
+        if not user_guess.isalpha() or len(user_guess) != 1:
+            print("Invalid input! input one letter")
+            continue
+        
+        if user_guess in guessed_letters:
+            print("you have already guessed this letter")
+            continue
+               
+
+        guessed_letters.append(user_guess)
+
+
+    
+        if user_guess in ran_w:
+            print (right_guess())
+        else:
+            print  (wrong_guess())
+            lives -= 1
+            print(f"You have {lives} live(s) left")
+
+       
+
+        if all(letter in guessed_letters for letter in ran_w):
+           print(f"🎉 You guessed the word: {ran_w.upper()} \nYOU WIN!!!")
+           break
+
+        if lives == 0:
+           print(f" Game Over! The word was:{ran_w.upper()}")
+           break
+        
+          
+   
+
+main()
+
+    
