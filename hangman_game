@@ -1,6 +1,7 @@
                                                                                                     
-# create the hangman game             
-                               .........................................                            
+# create the hangman game     
+hangman_art= """   
+                              .........................................                            
                               .:+##################################+:..                             
                                -%@*++++++++++++++++++++++++++++++*@%-..                             
                                -%@=..                           .-@%-                               
@@ -42,10 +43,10 @@
                      ...      .-%@=..                                                               
                      ..........-%@=.............................................                    
                    ..-*********#@@#*******************************************-..                   
-                  ...=########################################################=.                    
+                  ...=########################################################=.    
+"""
 
 import random
-
 
 def hint(ran_w,guessed_letters):
     for h in ran_w:
@@ -60,7 +61,7 @@ def wrong_guess():
     return random.choice(wrong_guesses)
         
 def right_guess():
-    right_guesses =("yess smart ass!", "mmm is this einstein?", "you can do it!", "i believe in you!", "ouu smart guess!", "boy o boy!", "he's good!", "great!", "them dey call am superstar!", "wow are you a magician?")
+    right_guesses =("yess smart ass!", "mmm ?", "you can do it!", "i believe in you!", "ouu smart guess!", "boy o boy!", "he's good!", "great!", "them dey call am superstar!", "wow are you a magician?")
     return random.choice(right_guesses)
         
 
@@ -70,7 +71,7 @@ def main():
      
     
     print(" Welcome to the hangman game")
-    print("Guess the country I'm in to save my life")
+    print("Guess the animal to save my life")
     
 
     words = ("zebra","frog","tiger","owl","bat","donkey","racoon","warthog","eel","maned-wolf", "addax", "tapir","jerboa")
@@ -110,10 +111,19 @@ def main():
         if lives == 0:
            print(f" Game Over! The word was:{ran_w.upper()}")
            break
-        
-          
-   
 
 main()
+
+while True:
+
+        user_play = input("Do you want to (P)lay again or (E)xit: ").lower()
+        if user_play == "p":
+            main()
+        elif user_play =="e":
+            print ("Goodbye!")
+            break
+        else:
+            print("Invalid choice, please enter P or E")  
+
 
     
